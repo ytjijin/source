@@ -590,6 +590,14 @@ Value sendrawtransaction(const Array& params, bool fHelp)
     }
     else
     {
+        BOOST_FOREACH(const CTxIn& txin, tx.vin)
+        {
+            CWalletTx &coin = pwalletMain->mapWallet[txin.prevout.hash];
+            coin.BindWallet(pwalletMain);
+            coin.MarkSpent(txin.prevout.n);
+            coin.WriteToDisk();
+            pwalletMain->NotifyTransactionChanged(pwalletMain, coin.GetHash(), CT_UPDATED);
+        }
         // push to local node
         if (!AcceptToMemoryPool(mempool, tx, true, NULL))
             throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX rejected");

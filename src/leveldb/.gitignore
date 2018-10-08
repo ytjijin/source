@@ -4,10 +4,9 @@ build_config.mk
 *.dylib*
 *.so
 *.so.*
+*.dll
+*.lib
 *_test
 db_bench
 leveldbutil
-Release
-Debug
-Benchmark
-vs2010.*
+*.exe

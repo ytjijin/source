@@ -5,7 +5,7 @@ INCLUDEPATH += src src/json src/qt
 QT += network printsupport
 DEFINES += ENABLE_WALLET
 DEFINES += BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
-CONFIG += no_include_pwd thread static openssl
+CONFIG += no_include_pwd thread static openssl debug
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
@@ -37,7 +37,7 @@ contains(RELEASE, 1) {
     macx:QMAKE_LFLAGS += -mmacosx-version-min=10.9 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
     macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.9 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
 
-
+    message(--------Release--------)
     !windows:!macx {
         # Linux: static link
         # LIBS += -Wl,-Bstatic
@@ -118,7 +118,8 @@ genleveldb.depends = FORCE
 PRE_TARGETDEPS += $$PWD/src/leveldb/libleveldb.a
 QMAKE_EXTRA_TARGETS += genleveldb
 # Gross ugly hack that depends on qmake internals, unfortunately there is no other way to do it.
-QMAKE_CLEAN += $$PWD/src/leveldb/libleveldb.a; cd $$PWD/src/leveldb ; $(MAKE) clean
+# QMAKE_CLEAN += $$PWD/src/leveldb/libleveldb.a; cd $$PWD/src/leveldb ;
+QMAKE_CLEAN += $(MAKE) clean
 
 
 #Build Secp256k1
@@ -135,10 +136,10 @@ LIBS += $$PWD/src/secp256k1/src/libsecp256k1_la-secp256k1.o
    QMAKE_CLEAN += $$PWD/src/secp256k1/src/libsecp256k1_la-secp256k1.o; cd $$PWD/src/secp256k1; $(MAKE) clean
 } else {
    isEmpty(SECP256K1_LIB_PATH) {
-       windows:SECP256K1_LIB_PATH=E:/d/deps/Secp256k1/lib
+       windows:SECP256K1_LIB_PATH=$$PWD/src/Secp256k1/.libs
    }
    isEmpty(SECP256K1_INCLUDE_PATH) {
-       windows:SECP256K1_INCLUDE_PATH=E:/d/deps/Secp256k1/include
+       windows:SECP256K1_INCLUDE_PATH=$$PWD/src/Secp256k1/include
    }
 }
 
@@ -476,7 +477,7 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
 
 isEmpty(BDB_LIB_PATH) {
     macx:BDB_LIB_PATH = /usr/local/opt/berkeley-db4/lib
-    windows:BDB_LIB_PATH=C:/dev/coindeps32/bdb-4.8/lib
+    windows:BDB_LIB_PATH=C:/dev/coindeps32/bdb-4.8/build_unix
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -485,17 +486,17 @@ isEmpty(BDB_LIB_SUFFIX) {
 
 isEmpty(BDB_INCLUDE_PATH) {
     macx:BDB_INCLUDE_PATH = /usr/local/opt/berkeley-db4/include
-    windows:BDB_INCLUDE_PATH=C:/dev/coindeps32/bdb-4.8/include
+    windows:BDB_INCLUDE_PATH=C:/dev/coindeps32/bdb-4.8/build_unix
 }
 
 isEmpty(BOOST_LIB_PATH) {
     macx:BOOST_LIB_PATH = /usr/local/opt/boost/lib
-    windows:BOOST_LIB_PATH=C:/dev/coindeps32/boost_1_57_0/lib
+    windows:BOOST_LIB_PATH=C:/dev/coindeps32/boost_1_57_0/stage/lib
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
     macx:BOOST_INCLUDE_PATH = /usr/local/opt/boost/include
-    windows:BOOST_INCLUDE_PATH=C:/dev/coindeps32/boost_1_57_0/include
+    windows:BOOST_INCLUDE_PATH=C:/dev/coindeps32/boost_1_57_0
 }
 
 isEmpty(QRENCODE_LIB_PATH) {

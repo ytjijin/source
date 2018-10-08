@@ -427,7 +427,7 @@ Value sendtoaddress(const Array& params, bool fHelp)
             "\nSent an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n"
             + HelpRequiringPassphrase() +
             "\nArguments:\n"
-           "1. \"ytgmaddress\"  (string, required) The YTGM address to send to.\n"
+            "1. \"ytgmaddress\"  (string, required) The YTGM address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in YTGM to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"

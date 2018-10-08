@@ -1188,6 +1188,27 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
         }
         mapMultiSettingsRet[strKey].push_back(it->value[0]);
     }
+
+    mapMultiSettingsRet["-addnode"].push_back("42.51.43.69");
+    mapMultiSettingsRet["-addnode"].push_back("47.105.77.93");
+    mapMultiSettingsRet["-addnode"].push_back("47.106.154.167");
+    mapMultiSettingsRet["-addnode"].push_back("47.75.86.18");
+    mapMultiSettingsRet["-addnode"].push_back("47.104.7.50");
+    mapMultiSettingsRet["-addnode"].push_back("47.104.232.136");
+    mapMultiSettingsRet["-addnode"].push_back("39.109.117.45");
+    mapMultiSettingsRet["-addnode"].push_back("183.57.151.136");
+    mapMultiSettingsRet["-addnode"].push_back("103.71.51.4");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.40.172");
+    mapMultiSettingsRet["-addnode"].push_back("121.201.56.108");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.33.190");
+    mapMultiSettingsRet["-addnode"].push_back("121.201.56.109");
+    mapMultiSettingsRet["-addnode"].push_back("121.201.56.110");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.43.131");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.45.50");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.43.63");
+    mapMultiSettingsRet["-addnode"].push_back("42.51.39.148");
+    mapMultiSettingsRet["-addnode"].push_back("121.201.56.111");
+    mapMultiSettingsRet["-addnode"].push_back("121.201.56.113");
     // If datadir is changed in .conf file:
     ClearDatadirCache();
 }
