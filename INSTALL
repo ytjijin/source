@@ -1,9 +1,0 @@
-Building YTGM
-
-See doc/readme-qt.rst for instructions on building YTGM QT,
-the intended-for-end-users, nice-graphical-interface, reference
-implementation of YTGM.
-
-See doc/build-*.txt for instructions on building ytgmd,
-the intended-for-services, no-graphical-interface, reference
-implementation of YTGM.
